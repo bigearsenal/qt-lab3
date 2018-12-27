@@ -20,6 +20,11 @@ private:
 
 private slots:
     void press();
+    void basicOperation();
+    void solveOperation();
+    void clear();
+    void minus_plus();
+    void sin_cos_log();
 };
 
 #endif // MAINWINDOW_H
