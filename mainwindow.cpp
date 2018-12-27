@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "qmath.h"
 double firstNumber;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -33,6 +34,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->btn_C, SIGNAL(released()),this, SLOT(clear()));
     connect(ui->btn_plus_minus, SIGNAL(released()),this, SLOT(minus_plus()));
+
+
+    connect(ui->btn_sin, SIGNAL(released()),this, SLOT(sin_cos_log()));
+    connect(ui->btn_cos, SIGNAL(released()),this, SLOT(sin_cos_log()));
+    connect(ui->btn_log, SIGNAL(released()),this, SLOT(sin_cos_log()));
 
 }
 
@@ -104,6 +110,19 @@ void MainWindow::minus_plus() {
     ui->label->setText(QString::number(-number));
 }
 
+void MainWindow::sin_cos_log() {
+    QPushButton * button= (QPushButton*)sender();
+    if (button->text() == "sin") {
+        double result = sin(ui->label->text().toDouble());
+        ui->label->setText(QString::number(result));
+    } else if (button->text() == "cos") {
+        double result = cos(ui->label->text().toDouble());
+        ui->label->setText(QString::number(result));
+    } else {
+        double result = log(ui->label->text().toDouble());
+        ui->label->setText(QString::number(result));
+    }
+}
 
 MainWindow::~MainWindow()
 {
